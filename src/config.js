@@ -6,5 +6,6 @@ module.exports = {
     }
   },
   loginEnvRegex: /<ZalogujResult>(.*)<\/ZalogujResult>/,
-  queryEnvRegex: /<DaneSzukajResult>([\s\S]+)<\/DaneSzukajResult>/
+  queryEnvRegex: /<DaneSzukajResult>([\s\S]+)<\/DaneSzukajResult>/,
+  fullEnvRegex:  /<DanePobierzPelnyRaportResult>([\s\S]+)<\/DanePobierzPelnyRaportResult>/
 };

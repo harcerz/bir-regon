@@ -2,7 +2,7 @@ const rp = require('request-promise');
 const entities = require('entities');
 const xml2js = require('xml2js');
 
-const { LoginEnvelope, LogoutEnvelope, QueryEnvelope } = require('./envelopes');
+const { LoginEnvelope, LogoutEnvelope, QueryEnvelope, FullEnvelope } = require('./envelopes');
 const config = require('./config');
 
 module.exports = class BirAPI {
@@ -39,7 +39,29 @@ module.exports = class BirAPI {
       });
   }
 
-
+  raportNameDetect(companyType, silosId)
+  {
+    let ret
+    if(companyType == "P") ret = "PublDaneRaportPrawna";
+    else 
+    {
+      switch(parseInt(silosId)) {
+        case 1:
+            ret = "PublDaneRaportDzialalnoscFizycznejCeidg";
+            break;
+        case 2:
+            ret = "PublDaneRaportDzialalnoscFizycznejRolnicza";
+            break;
+        case 3:
+            ret = "PublDaneRaportDzialalnoscFizycznejPozostala";
+            break;
+        case 4:
+            ret = "PublDaneRaportDzialalnoscFizycznejWKrupgn";
+            break;
+      }
+    } 
+    return ret;
+  }
   /**
    * Queries the BIR database for a specific NIP. Returns parsed company's information.
    *
@@ -64,15 +86,50 @@ module.exports = class BirAPI {
       .then(queryResultsString => new Promise((resolve, reject) =>
         xml2js.parseString(queryResultsString, (err, result) => err ? reject(err) : resolve(result))
       ))
-      .then(queryResultsWrapped => queryResultsWrapped['root']['dane'][0])
+      .then(queryResultsWrapped => queryResultsWrapped['root']['dane'])
       .then(queryResults => {
+        let result = new Array;
+        
+        for (let i in queryResults) {
+          let company = {};
+          for (let key in queryResults[i]) {
+            if (queryResults[i].hasOwnProperty(key)) {
+              company[key] = Array.isArray(queryResults[i][key]) ? queryResults[i][key][0] : queryResults[i][key];
+            }
+          }
+          result.push(company);
+        }
+        return result;
+      });
+  }
+
+  full(regon, raportName) {
+    if (!this.isAuthenticated()) {
+      return Promise.reject('Not authenticated');
+    }
+
+    let fullEnvelope = new FullEnvelope(this._url, regon, raportName);
+    let fullOptions = BirAPI._getRequestOptions(this._url, fullEnvelope.toString(),
+      this._sessionID);
+
+    return rp(fullOptions)
+      .then(body => {
+        let results = config.fullEnvRegex.exec(body);// TU KONIEC!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        return results ? results[1] : Promise.reject('REGON not found or invalid');
+      })
+      .then(entities.decodeXML.bind(entities))
+      .then(fullResultsString => new Promise((resolve, reject) =>
+        xml2js.parseString(fullResultsString, (err, result) => err ? reject(err) : resolve(result))
+      ))
+      .then(fullResultsWrapped => fullResultsWrapped['root']['dane'][0])
+      .then(fullResults => {
         let result = {};
-        for (let key in queryResults) {
-          if (queryResults.hasOwnProperty(key)) {
-            result[key] = Array.isArray(queryResults[key]) ? queryResults[key][0] : queryResults[key];
+        for (let key in fullResults) {
+          if (fullResults.hasOwnProperty(key)) {
+            result[key] = Array.isArray(fullResults[key]) ? fullResults[key][0] : fullResults[key];
           }
         }
-
+        //console.log(result)
         return result;
       });
   }

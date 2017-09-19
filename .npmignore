@@ -46,7 +46,3 @@ jspm_packages
 # Yarn Integrity file
 .yarn-integrity
 
-*.yml
-.eslintignore
-.eslintrc.json
-.editorconfig

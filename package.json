@@ -1,35 +1,113 @@
 {
-  "name": "bir-regon",
-  "version": "0.2.1",
-  "description": "Polish legal company data query API",
-  "main": "index.js",
-  "scripts": {
-    "test": "mocha",
-    "lint": "eslint .",
-    "lint:cleanexit": "npm run --silent lint || true",
-    "coverage": "nyc --reporter=lcov npm test"
+  "_args": [
+    [
+      {
+        "raw": "bir-regon",
+        "scope": null,
+        "escapedName": "bir-regon",
+        "name": "bir-regon",
+        "rawSpec": "",
+        "spec": "latest",
+        "type": "tag"
+      },
+      "C:\\Projekty\\test"
+    ]
+  ],
+  "_from": "bir-regon@latest",
+  "_id": "bir-regon@0.2.1",
+  "_inCache": true,
+  "_location": "/bir-regon",
+  "_nodeVersion": "7.3.0",
+  "_npmOperationalInternal": {
+    "host": "packages-18-east.internal.npmjs.com",
+    "tmp": "tmp/bir-regon-0.2.1.tgz_1483912020480_0.5216162838041782"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Gelio/bir-regon.git"
+  "_npmUser": {
+    "name": "gelio",
+    "email": "voreny.gelio@gmail.com"
   },
-  "author": "Grzegorz Rozdzialik <voreny.gelio@gmail.com>",
-  "license": "ISC",
+  "_npmVersion": "4.0.5",
+  "_phantomChildren": {
+    "asynckit": "0.4.0",
+    "aws-sign2": "0.6.0",
+    "aws4": "1.6.0",
+    "caseless": "0.12.0",
+    "extend": "3.0.1",
+    "har-validator": "4.2.1",
+    "is-typedarray": "1.0.0",
+    "isstream": "0.1.2",
+    "json-stringify-safe": "5.0.1",
+    "jsprim": "1.4.1",
+    "mime-types": "2.1.17",
+    "performance-now": "0.2.0",
+    "safe-buffer": "5.1.1",
+    "sshpk": "1.13.1",
+    "stringstream": "0.0.5",
+    "tough-cookie": "2.3.2"
+  },
+  "_requested": {
+    "raw": "bir-regon",
+    "scope": null,
+    "escapedName": "bir-regon",
+    "name": "bir-regon",
+    "rawSpec": "",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "http://registry.npmjs.org/bir-regon/-/bir-regon-0.2.1.tgz",
+  "_shasum": "f1e2339d31f6291ed68c61a2a99cafef5f056a96",
+  "_shrinkwrap": null,
+  "_spec": "bir-regon",
+  "_where": "C:\\Projekty\\test",
+  "author": {
+    "name": "Grzegorz Rozdzialik",
+    "email": "voreny.gelio@gmail.com"
+  },
   "bugs": {
     "url": "https://github.com/Gelio/bir-regon/issues"
   },
-  "homepage": "https://github.com/Gelio/bir-regon#readme",
   "dependencies": {
     "entities": "^1.1.1",
     "request": "^2.79.0",
     "request-promise": "^4.1.1",
     "xml2js": "^0.4.17"
   },
+  "description": "Polish legal company data query API",
   "devDependencies": {
     "chai": "^3.5.0",
     "eslint": "^3.12.2",
-    "mocha": "^3.2.0",
-    "nyc": "^10.1.2"
+    "mocha": "^3.2.0"
   },
-  "typings": "bir-regon.d.ts"
+  "directories": {},
+  "dist": {
+    "shasum": "f1e2339d31f6291ed68c61a2a99cafef5f056a96",
+    "tarball": "https://registry.npmjs.org/bir-regon/-/bir-regon-0.2.1.tgz"
+  },
+  "gitHead": "59eb3a5c21de594f6696cfacc42bdb77cf1f2a86",
+  "homepage": "https://github.com/Gelio/bir-regon#readme",
+  "license": "ISC",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "name": "gelio",
+      "email": "voreny.gelio@gmail.com"
+    }
+  ],
+  "name": "bir-regon",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gelio/bir-regon.git"
+  },
+  "scripts": {
+    "lint": "eslint index.js",
+    "lint:cleanexit": "npm run --silent lint || true",
+    "test": "mocha"
+  },
+  "typings": "bir-regon.d.ts",
+  "version": "0.2.1"
 }

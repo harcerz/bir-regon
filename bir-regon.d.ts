@@ -15,6 +15,10 @@ declare module 'bir-regon' {
      */
     query(nip: string): Promise<Object>;
 
+    full(regon: string, raportName: string): Object;
+
+    raportNameDetect(companyType: string, silosId: string): string;
+
     logout(): void;
 
     /**
