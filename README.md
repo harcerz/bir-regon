@@ -38,3 +38,4 @@ More information is available on [the Polish BIP pages](http://bip.stat.gov.pl/d
 # Author
 
 The author of this package is [Grzegorz Rozdzialik](voreny.gelio@gmail.com).
+edit by Mateusz Sych
